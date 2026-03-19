@@ -19,7 +19,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="clean-card shadow-lg border-0" style="background: rgba(24, 24, 27, 0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+        <div class="clean-card fade-in shadow-lg border-0" style="background: rgba(24, 24, 27, 0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
             <div class="card-body p-4 p-md-5">
                 
                 <?php if (session()->getFlashdata('errors') || session('errors')): ?>

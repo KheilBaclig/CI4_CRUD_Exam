@@ -19,7 +19,7 @@ $subsegment = service('uri')->getSegment(2);
         <a href="<?= base_url('students') ?>"
            class="dock-item <?= ($segment === 'students') ? 'active' : '' ?>">
             <i class="bi bi-journal-richtext"></i>
-            <span>Roster</span>
+            <span>Students</span>
         </a>
 
         <?php if ($role === 'admin'): ?>

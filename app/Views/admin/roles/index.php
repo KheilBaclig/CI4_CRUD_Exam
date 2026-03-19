@@ -37,63 +37,68 @@
     </div>
 </div>
 
-<div class="clean-card shadow-md-clean border-0" style="background: rgba(24, 24, 27, 0.4); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table align-middle mb-0" style="color: var(--text-secondary); border-color: var(--border-light);">
-                <thead>
-                    <tr style="border-bottom: 1px solid var(--border-light); background: rgba(0,0,0,0.2);">
-                        <th class="ps-4 py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none; width: 60px;">#</th>
-                        <th class="py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none;">Role Identifier</th>
-                        <th class="py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none;">Label</th>
-                        <th class="py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none;">Description</th>
-                        <th class="text-center py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none;">Bound Users</th>
-                        <th class="text-center pe-4 py-3 text-uppercase" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; border: none;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody style="border-top: none;">
-                    <?php foreach ($roles as $i => $role): ?>
-                    <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
-                        <td class="ps-4 py-3" style="border-bottom: 1px solid var(--border-light); font-size: 0.85rem; font-family: monospace;"><?= sprintf('%02d', $i + 1) ?></td>
-                        <td class="py-3" style="border-bottom: 1px solid var(--border-light);">
-                            <span class="px-2 py-1 rounded" style="background: rgba(2fb,113,133,0.1); color: #fb7185; font-size: 0.75rem; font-family: monospace; font-weight: 600; border: 1px solid rgba(251,113,133,0.2);">@<?= esc($role['name']) ?></span>
-                            <?php if ($role['name'] === 'admin'): ?>
-                                <i class="bi bi-shield-fill-check ms-2" style="color: #6366f1; font-size: 0.8rem; filter: drop-shadow(0 0 5px rgba(99,102,241,0.5));" title="System Protected"></i>
+<div class="nexus-table-container fade-in shadow-md-clean border-0">
+    <div class="table-responsive">
+        <table class="nexus-table align-middle">
+            <thead>
+                <tr>
+                    <th class="ps-4">#</th>
+                    <th>Role Identifier</th>
+                    <th>Label</th>
+                    <th>Description</th>
+                    <th class="text-center">Bound Users</th>
+                    <th class="text-center pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($roles as $i => $role): ?>
+                <tr>
+                    <td class="ps-4 py-3 nexus-table-meta"><?= sprintf('%02d', $i + 1) ?></td>
+                    <td class="py-3">
+                        <span class="px-2 py-1 rounded" style="background: rgba(251,113,133,0.1); color: #fb7185; font-size: 0.75rem; font-family: monospace; font-weight: 600; border: 1px solid rgba(251,113,133,0.2);">@<?= esc($role['name']) ?></span>
+                        <?php if ($role['name'] === 'admin'): ?>
+                            <i class="bi bi-shield-fill-check ms-2" style="color: var(--teal); font-size: 0.8rem; filter: drop-shadow(0 0 5px rgba(0,212,170,0.4));" title="System Protected"></i>
+                        <?php endif; ?>
+                    </td>
+                    <td class="py-3 nexus-table-label"><?= esc($role['label']) ?></td>
+                    <td class="py-3" style="font-size: 0.85rem; max-width:280px; color: var(--text-300);"><?= esc($role['description'] ?? '—') ?></td>
+                    <td class="py-3 text-center">
+                        <span class="px-2 py-1 rounded-pill" style="background: var(--bg-raised); color: var(--text-100); font-size: 0.75rem; font-weight: 600; border: 1px solid var(--border-1);"><?= $role['user_count'] ?></span>
+                    </td>
+                    <td class="py-3 text-center pe-4">
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="<?= base_url('/admin/roles/edit/' . $role['id']) ?>"
+                               class="btn btn-sm d-inline-flex align-items-center justify-content-center" 
+                               style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--bg-raised); color: var(--text-300); border: 1px solid var(--border-2); transition: all 0.2s;" 
+                               onmouseover="this.style.color='var(--text-100)'; this.style.background='var(--bg-hover)'; this.style.borderColor='var(--coral-border)'" 
+                               onmouseout="this.style.color='var(--text-300)'; this.style.background='var(--bg-raised)'; this.style.borderColor='var(--border-2)'" 
+                               title="Configure">
+                                <i class="bi bi-gear-fill"></i>
+                            </a>
+                            <?php if ($role['name'] !== 'admin'): ?>
+                            <button type="button" class="btn btn-sm d-inline-flex align-items-center justify-content-center"
+                                    style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: rgba(244,63,94,0.1); color: #fb7185; border: 1px solid rgba(244,63,94,0.2); transition: all 0.2s;"
+                                    onmouseover="this.style.background='rgba(244,63,94,0.2)'; this.style.color='#fff'" 
+                                    onmouseout="this.style.background='rgba(244,63,94,0.1)'; this.style.color='#fb7185'"
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                    data-id="<?= $role['id'] ?>"
+                                    data-label="<?= esc($role['label']) ?>"
+                                    data-count="<?= $role['user_count'] ?>" title="Terminate">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                            <?php else: ?>
+                            <button class="btn btn-sm d-inline-flex align-items-center justify-content-center" 
+                                    style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: transparent; color: var(--text-400); border: 1px solid transparent; cursor: not-allowed;" 
+                                    disabled title="System Core Locked">
+                                <i class="bi bi-lock-fill"></i>
+                            </button>
                             <?php endif; ?>
-                        </td>
-                        <td class="py-3 fw-medium" style="border-bottom: 1px solid var(--border-light); color: var(--text-primary); font-size: 0.9rem;"><?= esc($role['label']) ?></td>
-                        <td class="py-3" style="border-bottom: 1px solid var(--border-light); font-size: 0.85rem; max-width:280px;"><?= esc($role['description'] ?? '—') ?></td>
-                        <td class="py-3 text-center" style="border-bottom: 1px solid var(--border-light);">
-                            <span class="px-2 py-1 rounded-pill" style="background: rgba(255,255,255,0.05); color: var(--text-primary); font-size: 0.75rem; font-weight: 600;"><?= $role['user_count'] ?></span>
-                        </td>
-                        <td class="py-3 text-center pe-4" style="border-bottom: 1px solid var(--border-light);">
-                            <div class="d-flex justify-content-center gap-2">
-                                <a href="<?= base_url('/admin/roles/edit/' . $role['id']) ?>"
-                                   class="btn btn-sm d-inline-flex align-items-center justify-content-center" style="width: 30px; height: 30px; border-radius: 6px; background: rgba(255,255,255,0.05); color: #9ca3af; border: 1px solid var(--border-light); transition: all 0.2s;" onmouseover="this.style.color='#f8fafc'; this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.color='#9ca3af'; this.style.background='rgba(255,255,255,0.05)'" title="Configure">
-                                    <i class="bi bi-gear-fill"></i>
-                                </a>
-                                <?php if ($role['name'] !== 'admin'): ?>
-                                <button type="button" class="btn btn-sm d-inline-flex align-items-center justify-content-center"
-                                        style="width: 30px; height: 30px; border-radius: 6px; background: rgba(244,63,94,0.1); color: #fb7185; border: 1px solid rgba(244,63,94,0.2); transition: all 0.2s;"
-                                        onmouseover="this.style.background='rgba(244,63,94,0.2)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(244,63,94,0.1)'; this.style.color='#fb7185'"
-                                        data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                        data-id="<?= $role['id'] ?>"
-                                        data-label="<?= esc($role['label']) ?>"
-                                        data-count="<?= $role['user_count'] ?>" title="Terminate">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </button>
-                                <?php else: ?>
-                                <button class="btn btn-sm d-inline-flex align-items-center justify-content-center" style="width: 30px; height: 30px; border-radius: 6px; background: transparent; color: #4b5563; border: 1px solid transparent; cursor: not-allowed;" disabled title="System Core Locked">
-                                    <i class="bi bi-lock-fill"></i>
-                                </button>
-                                <?php endif; ?>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

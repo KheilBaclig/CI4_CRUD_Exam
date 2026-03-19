@@ -23,9 +23,9 @@
                 <span style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--text-400); letter-spacing:0.1em;">Total Users</span>
                 <div class="stat-icon-box coral"><i class="bi bi-people-fill"></i></div>
             </div>
-            <div style="font-size:2.1rem; font-weight:800; letter-spacing:-0.03em; line-height:1;">1,248</div>
+            <div style="font-size:2.1rem; font-weight:800; letter-spacing:-0.03em; line-height:1;"><?= number_format($totalUsers) ?></div>
             <div class="mt-2" style="font-size:0.72rem; color:#4ade80; font-weight:600;">
-                <i class="bi bi-arrow-up-right"></i> 12% this month
+                <i class="bi bi-person-fill"></i> Total Identities
             </div>
         </div>
     </div>
@@ -35,9 +35,9 @@
                 <span style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--text-400); letter-spacing:0.1em;">Active Students</span>
                 <div class="stat-icon-box teal"><i class="bi bi-person-check-fill"></i></div>
             </div>
-            <div style="font-size:2.1rem; font-weight:800; letter-spacing:-0.03em; line-height:1;">892</div>
+            <div style="font-size:2.1rem; font-weight:800; letter-spacing:-0.03em; line-height:1;"><?= number_format($studentCount) ?></div>
             <div class="mt-2" style="font-size:0.72rem; color:#4ade80; font-weight:600;">
-                <i class="bi bi-arrow-up-right"></i> 5% this month
+                <i class="bi bi-mortarboard-fill"></i> Scholars Enrolled
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js" crossorigin="anonymous"></script>
 <script>
 new ApexCharts(document.querySelector('#revenue-chart'), {
-    theme: { mode: 'dark' },
+    theme: { mode: 'light' },
     series: [
         { name: 'Logins',        data: [850, 920, 1100, 1050, 1250, 1320] },
         { name: 'Registrations', data: [120, 150, 110, 130, 180, 156] }
@@ -111,11 +111,11 @@ new ApexCharts(document.querySelector('#revenue-chart'), {
     xaxis: {
         categories: ['Jan','Feb','Mar','Apr','May','Jun'],
         axisBorder: { show: false }, axisTicks: { show: false },
-        labels: { style: { colors: '#4a4540', fontSize: '0.72rem' } }
+        labels: { style: { colors: '#64748b', fontSize: '0.72rem' } }
     },
-    yaxis: { labels: { style: { colors: '#4a4540', fontSize: '0.72rem' } } },
-    grid: { borderColor: 'rgba(255,255,255,0.04)', strokeDashArray: 4 },
-    tooltip: { theme: 'dark' }
+    yaxis: { labels: { style: { colors: '#64748b', fontSize: '0.72rem' } } },
+    grid: { borderColor: 'rgba(0,0,0,0.05)', strokeDashArray: 4 },
+    tooltip: { theme: 'light' }
 }).render();
 
 new jsVectorMap({

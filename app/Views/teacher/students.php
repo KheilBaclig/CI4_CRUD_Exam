@@ -8,8 +8,8 @@
 <div class="d-flex align-items-center justify-content-between mb-4 gap-3 fade-in">
     <div>
         <div style="font-size:0.65rem; font-weight:700; color:var(--teal-400); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.3rem;">Academics</div>
-        <h1 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); letter-spacing:-0.03em; margin:0;">Student Roster</h1>
-        <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.25rem 0 0;">All enrolled students in the system</p>
+        <h1 style="font-size:1.5rem; font-weight:800; color:var(--text-primary); letter-spacing:-0.03em; margin:0;">Students</h1>
+        <p style="font-size:0.85rem; color:var(--text-secondary); margin:0.25rem 0 0;">Comprehensive list of all enrolled academic units</p>
     </div>
     <span class="badge-teal" style="font-size:0.8rem; padding:0.4rem 1rem;">
         <i class="bi bi-people-fill me-1"></i> <?= count($students) ?> Students
