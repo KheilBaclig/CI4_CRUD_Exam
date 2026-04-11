@@ -37,7 +37,7 @@ class UserModel extends Model
     public function findWithRole(int $id): ?array
     {
         return $this->db->table('users u')
-            ->select('u.*, r.name AS role_name, r.label AS role_label')
+            ->select('u.*, r.name AS role_name')
             ->join('roles r', 'r.id = u.role_id', 'left')
             ->where('u.id', $id)
             ->get()->getRowArray();
